@@ -1,0 +1,80 @@
+package main;
+
+import java.io.*;
+import java.util.*;
+import main.*;
+import main.invoice.*;
+
+public class StoreMyObject
+{
+	public static void main(String[] args) 
+	{
+		ReadMyFile r = new ReadMyFile();
+		String orderFileName = null;
+		String line = null;
+		File f = null;
+		FileReader fr = null;
+		BufferedReader orderin = null;
+		ObjectOutputStream ivout = null;
+		ObjectInputStream ivin = null;
+		
+		try
+		{
+		 orderFileName = args[0];
+		}
+		catch ( ArrayIndexOutOfBoundsException e )
+		{
+		 orderFileName = r.getFile();
+		 System.out.println("File name not entered.\nTaking default order " + orderFileName + " .");
+		}
+		
+		try
+		{
+		 System.out.println("File name " +  orderFileName + " .");
+		 f = new File(orderFileName);
+		 fr = new FileReader(f);
+		 orderin = new BufferedReader(fr);	
+		}
+		catch (FileNotFoundException fne)
+		{
+			System.out.println("File Not Found\nExiting program.");
+			return;
+		}
+		
+		try
+		{
+		 Invoice i1 = r.getInvoice(orderin);
+		 ivout = new ObjectOutputStream( new BufferedOutputStream( new FileOutputStream("MyProductOrders")));
+		 ivout.writeObject(i1);
+		 ivout.close();//closing invoice out objstream
+		 
+		 Invoice i2 = null;
+		 ivin = new ObjectInputStream( new BufferedInputStream( new FileInputStream("MyProductOrders")));
+		 i2 = (Invoice)ivin.readObject();
+		 System.out.println(i2);
+		 
+		 //closing streams
+		 fr.close();
+		 ivin.close();
+		}
+		catch(NotSerializableException nse)
+		{
+		 System.out.println("NotSerializableException.\n" + nse );
+		 return;
+		}
+		catch(InvalidClassException ine)
+		{
+		 System.out.println("InvalidClassException.\n");
+		 return;
+		}
+		catch ( ClassNotFoundException cnfe)
+		{
+		 System.out.println("ClassNotFoundException.\n" + cnfe);
+		}
+		catch (IOException ioe)
+		{
+		 System.out.println("Error occured while reading contents from file.\nTry again!!\n");
+		 	return;
+		}
+	}
+}

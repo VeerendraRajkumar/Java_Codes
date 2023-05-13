@@ -1,0 +1,55 @@
+package main;
+
+import java.util.*;
+import java.io.*;
+import main.*;
+import main.invoice.*;
+
+public class InvoiceApp1File
+{
+	public static void main(String[] args) 
+	{
+		ReadMyFile r = new ReadMyFile();
+		String orderFileName = null;
+		String line = null;
+		FileReader fr = null;
+		BufferedReader order = null;
+		
+		try
+		{
+		 orderFileName = args[0];
+		}
+		catch ( ArrayIndexOutOfBoundsException e )
+		{
+		 orderFileName = r.getFile();//"orderFile";
+		 System.out.println("File name not entered.\nTaking default order " + orderFileName + " .");
+		}
+		
+		try
+		{
+		 System.out.println("File name " +  orderFileName + " .");
+		 File f = new File(orderFileName);
+		 fr = new FileReader(f);
+		 order = new BufferedReader(fr);	
+		}
+		catch (FileNotFoundException fne)
+		{
+			System.out.println("File Not Found\nExiting program.");
+			return;
+		}
+		
+		try
+		{
+		 Invoice i = r.getInvoice(order);
+		 System.out.println(i);
+		}
+		catch (IOException ioe)
+		{
+		 	System.out.println("Error occured while reading contents from file.\nTry again!!\n");
+		 	return;
+		}
+
+		fr.close();
+		
+	}
+}

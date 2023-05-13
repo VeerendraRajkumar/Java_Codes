@@ -1,0 +1,24 @@
+import java.io.*;
+import java.net.*;
+
+public class Client 
+{
+	public static void main(String args[ ]) throws Exception 
+	{
+		String host = "localhost";
+		InetAddress server = InetAddress.getByName(host);
+		Socket s = new Socket(server, 4242);
+		
+		BufferedReader r = new BufferedReader( new InputStreamReader(s.getInputStream()));
+		
+		PrintWriter out = new PrintWriter( new OutputStreamWriter(s.getOutputStream()));
+		
+		out.println("MyName");
+		out.flush();
+		
+		String response = r.readLine();
+		System.out.println(response);
+		
+		s.close();
+	}
+}

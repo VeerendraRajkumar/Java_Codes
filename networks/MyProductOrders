@@ -1,0 +1,46 @@
+Veerendra-19005.
+
+
+Invoice Number:Thu Feb 06 18:56:54 IST 2020
+
+Date:         Thu Feb 06 18:56:54 IST 2020
+
+List of items:
+[
+Code:        java
+Description: Murach's Beginning Java 2
+Price:       ₹ 49.50
+Author     : Andrea Steelman
+
+Quantity: 1	Total: 49.5	orderObjCnt: 5
+, 
+Code:        jsps
+Description: Murach's Java Servlets and JSP
+Price:       ₹ 49.50
+Author     : Andrea Steelman
+
+Quantity: 2	Total: 99.0	orderObjCnt: 5
+, 
+Code:        mcb2
+Description: Murach's Mainframe COBOL
+Price:       ₹ 59.50
+Author     : Mike Murach
+
+Quantity: 3	Total: 178.5	orderObjCnt: 5
+, 
+Code:        txtpd
+Description: TextPad
+Price:       ₹ 27.00
+Version    : 4.7.3
+
+Quantity: 4	Total: 108.0	orderObjCnt: 5
+, 
+Code:        wrdpd
+Description: Word Pad
+Price:       ₹ 37.00
+Version    : 6.3.3
+
+Quantity: 5	Total: 185.0	orderObjCnt: 5
+]
+
+Total:        620.0
